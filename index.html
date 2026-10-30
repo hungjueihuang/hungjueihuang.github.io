@@ -32,9 +32,9 @@
 
     <section id="work">
       <h2>Selected work</h2>
-      <p>Three kinds of work: tools I built, ventures I ran, and research I contributed to.</p>
+      <p>Three kinds of work: tools and models I built, ventures I ran, and research I contributed to.</p>
 
-      <h3>Tools</h3>
+      <h3>Tools and models</h3>
       <div class="cards">
         <article class="card">
           <p class="meta">Personal project · 2026</p>
@@ -42,11 +42,42 @@
           <p>A neural-network engine for a 9×9 rock-paper-scissors chess variant, trained by self-play on one laptop. Reached #1 on the meaf.us leaderboard of 1,800+ players.</p>
           <p class="tags">PyTorch · C · self-play RL</p>
         </article>
-        <article class="card">
+        <article class="card wide">
           <p class="meta">Taipei Medical University Hospital · 2023–24</p>
           <h4>Admission-note assistant</h4>
           <p>Generative-AI tool for admission notes, limited to documentation with a physician in the loop. Note time from 30+ to under 10 minutes; projected 500+ physician-days saved a year.</p>
+          <details class="model" id="notes-model">
+            <summary>Run the numbers</summary>
+            <div class="sliders">
+              <label>Admissions per day, hospital-wide <output data-for="n-adm"></output>
+                <input type="range" id="n-adm" min="5" max="100" step="1" value="35"></label>
+              <label>Minutes saved per note <output data-for="n-min"></output>
+                <input type="range" id="n-min" min="5" max="30" step="1" value="20"></label>
+              <label>Hours in a physician-day <output data-for="n-hrs"></output>
+                <input type="range" id="n-hrs" min="6" max="12" step="1" value="8"></label>
+            </div>
+            <p class="result"><span id="n-out" class="big"></span> physician-days saved per year</p>
+            <p class="note">Illustrative. Admissions × minutes saved × 365 days ÷ minutes in a physician-day. Default inputs are assumptions, not hospital data.</p>
+          </details>
           <p class="tags">Clinical AI · workflow</p>
+        </article>
+        <article class="card wide">
+          <p class="meta">Taipei Medical University Hospital · 2025</p>
+          <h4>Risk-based screening redesign</h4>
+          <p>Redesigned health-screening protocols for 72K employees screened a year: literature review, expert interviews, evidence-based risk stratification, and removal of outdated tests. Projected to add ~10K life-years.</p>
+          <details class="model" id="screen-model">
+            <summary>See why risk stratification matters</summary>
+            <div class="sliders">
+              <label>Screen the highest-risk <output data-for="s-pct"></output>
+                <input type="range" id="s-pct" min="5" max="100" step="5" value="30"></label>
+              <label>Share of benefit held by the top 20% <output data-for="s-conc"></output>
+                <input type="range" id="s-conc" min="20" max="80" step="5" value="50"></label>
+            </div>
+            <div class="screen-bars" aria-hidden="true"><span id="s-bar"></span></div>
+            <p class="result"><span id="s-people" class="big"></span> people screened → <span id="s-ly" class="big"></span> life-years</p>
+            <p class="note"><span id="s-yield"></span> life-years per 1,000 screened, vs <span id="s-yield-all"></span> if everyone is screened. Illustrative toy model: 72,000 people, benefit capped at 10,000 life-years, risk concentrated per the second slider. Not the TMUH model.</p>
+          </details>
+          <p class="tags">Preventive medicine · modeling</p>
         </article>
         <article class="card">
           <p class="meta">Boston Consulting Group · 2026</p>
@@ -106,11 +137,34 @@
       <h2>Off hours</h2>
       <p>Amateur magician for 18 years: performed in 5 countries and wrote a magic tutorial book. Table tennis for 10 years. Rubik’s Cube personal best: 17 seconds.</p>
     </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Hiring for healthcare, AI or strategy work? Leave a line and I’ll get back to you.</p>
+      <form id="contact-form" class="contact">
+        <label>Name <input name="name" required autocomplete="name"></label>
+        <label>Company / role <input name="company" autocomplete="organization"></label>
+        <label>Message <textarea name="message" rows="4" required></textarea></label>
+        <button type="submit">Send</button>
+        <p id="form-status" class="note" role="status"></p>
+      </form>
+    </section>
   </main>
 
   <footer>
-    <p class="motto">“Make your efforts worthy of your luck.”</p>
+    <p><button class="motto" id="motto" type="button" title="♠">“Make your efforts worthy of your luck.”</button></p>
     <p>© 2026 Charlie Huang · <a href="mailto:hungjuei.huang@gmail.com">hungjuei.huang@gmail.com</a></p>
   </footer>
+
+  <dialog id="trick">
+    <p id="trick-text"></p>
+    <div id="trick-cards" class="playing-cards"></div>
+    <div class="trick-actions">
+      <button type="button" id="trick-next"></button>
+      <button type="button" id="trick-close" class="ghost">Close</button>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
 </body>
 </html>

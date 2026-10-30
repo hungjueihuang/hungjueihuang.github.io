@@ -111,3 +111,70 @@ footer {
 }
 
 .motto { font: italic 1.05rem var(--serif); color: var(--fg); }
+
+/* Wide cards and live models */
+@media (min-width: 640px) {
+  .card.wide { grid-column: 1 / -1; }
+  .cards { grid-auto-flow: dense; }
+}
+
+.model {
+  margin: 12px 0;
+  border-top: 1px dashed var(--line);
+  padding-top: 10px;
+}
+.model summary { cursor: pointer; color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+.sliders { display: grid; gap: 10px; margin: 14px 0; }
+.sliders label { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: 0.85rem; }
+.sliders input { grid-column: 1 / -1; width: 100%; accent-color: var(--accent); }
+.sliders output { font-variant-numeric: tabular-nums; font-weight: 600; }
+.result { font-size: 0.95rem; }
+.big { font: 600 1.5rem var(--serif); color: var(--accent); font-variant-numeric: tabular-nums; }
+.note { color: var(--muted); font-size: 0.8rem !important; }
+.screen-bars { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+.screen-bars span { display: block; height: 100%; background: var(--accent); transition: width 0.2s; }
+
+/* Contact form */
+.contact { display: grid; gap: 12px; }
+.contact label { display: grid; gap: 4px; font-size: 0.9rem; color: var(--muted); }
+.contact input, .contact textarea {
+  font: inherit; color: var(--fg); background: var(--card);
+  border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px;
+}
+.contact input:focus, .contact textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+button {
+  font: 600 0.95rem var(--sans); cursor: pointer;
+  background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 10px 18px;
+}
+.contact button { justify-self: start; }
+button.ghost { background: transparent; color: var(--muted); }
+
+/* Easter egg */
+button.motto {
+  background: none; padding: 0; border-radius: 0; cursor: pointer;
+  font: italic 1.05rem var(--serif); color: var(--fg);
+}
+button.motto:hover { color: var(--accent); }
+
+dialog {
+  border: 1px solid var(--line); border-radius: 14px; padding: 24px;
+  background: var(--bg); color: var(--fg); max-width: min(520px, calc(100vw - 32px));
+}
+dialog::backdrop { background: rgba(0, 0, 0, 0.55); }
+#trick-text { font: 1.15rem/1.4 var(--serif); margin-top: 0; }
+.playing-cards { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 16px 0; transition: transform 0.3s; }
+.playing-cards.shuffle { animation: shuffle 0.9s ease-in-out; }
+@keyframes shuffle {
+  25% { transform: translateX(-12px) rotate(-3deg); }
+  50% { transform: translateX(12px) rotate(3deg); opacity: 0.4; }
+  75% { transform: translateX(-6px); }
+}
+.pc {
+  width: 64px; height: 92px; border-radius: 8px; background: #fff; color: #1d1d1b;
+  border: 1px solid #d6d3cc; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font: 600 1.6rem var(--serif);
+}
+.pc small { font-size: 1.3rem; }
+.pc.red { color: #b3261e; }
+.trick-actions { display: flex; gap: 8px; justify-content: flex-end; }
