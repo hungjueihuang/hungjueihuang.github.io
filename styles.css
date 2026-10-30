@@ -1,0 +1,113 @@
+:root {
+  --bg: #fbfaf7;
+  --fg: #1d1d1b;
+  --muted: #6b6a66;
+  --line: #e4e1da;
+  --card: #ffffff;
+  --accent: #8c1515; /* Stanford cardinal */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #151514;
+    --fg: #ecebe7;
+    --muted: #9c9a94;
+    --line: #2c2b29;
+    --card: #1c1c1a;
+    --accent: #e0726f;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 17px/1.6 var(--sans);
+}
+
+main, footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.hero { padding: 96px 0 48px; }
+
+h1 {
+  font: 600 2.6rem/1.15 var(--serif);
+  margin: 0;
+}
+
+.zh {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.6em;
+  color: var(--muted);
+  margin-left: 0.25em;
+}
+
+.creds { color: var(--muted); margin: 8px 0 24px; letter-spacing: 0.02em; }
+
+.lede { font: 1.35rem/1.45 var(--serif); margin: 0 0 24px; }
+
+.links { display: flex; gap: 20px; flex-wrap: wrap; }
+
+section { padding: 32px 0; border-top: 1px solid var(--line); }
+
+h2 {
+  font: 600 0.8rem/1 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+
+h3 { font: 600 1.25rem/1.3 var(--serif); margin: 32px 0 12px; }
+
+.cards { display: grid; gap: 12px; }
+
+@media (min-width: 640px) {
+  .cards { grid-template-columns: 1fr 1fr; }
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+
+.card h4 { font: 600 1.05rem/1.3 var(--sans); margin: 0 0 8px; }
+.card p { margin: 0 0 8px; font-size: 0.95rem; }
+.card p:last-child { margin-bottom: 0; }
+.meta, .tags { color: var(--muted); font-size: 0.8rem !important; }
+
+.plain { padding-left: 1.1em; }
+.plain li { margin-bottom: 10px; }
+
+.timeline { list-style: none; padding: 0; margin: 0; }
+.timeline li { display: flex; gap: 16px; padding: 6px 0; }
+.when {
+  flex: 0 0 72px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding-top: 32px;
+  padding-bottom: 64px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.motto { font: italic 1.05rem var(--serif); color: var(--fg); }
